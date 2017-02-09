@@ -1,0 +1,18 @@
+@import "~susy/sass/susy";
+
+// $susy: ('gutters':  .01);
+
+.dashboard-container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    // align-items: stretch;
+}
+
+.dashboard-item{
+    border: #DDD solid 1px;    
+    @include span(6 of 12); 
+}
+.horizontal-divider{
+    margin:2em 0;
+}
