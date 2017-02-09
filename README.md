@@ -1,7 +1,5 @@
 # About
-
-Little seed project
-
+Seeded FROM [pahomovda](https://github.com/pahomovda/react-redux-router-material-ui-seed)
 ## Technologies
 
 * React.js
@@ -10,4 +8,4 @@ Little seed project
 * Material UI
 * Babel
 * Webpack/WebpackDevServer
-* Scss/Sass + Postcss
+* Scss
