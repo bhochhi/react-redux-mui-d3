@@ -1,11 +1,2 @@
-# About
-Seeded FROM [pahomovda](https://github.com/pahomovda/react-redux-router-material-ui-seed)
-## Technologies
-
-* React.js
-* Redux
-* React router
-* Material UI
-* Babel
-* Webpack/WebpackDevServer
-* Scss
+# About the dist folder
+After building the dist version of your project, the generated files are stored in this folder. You should keep it under version control.
