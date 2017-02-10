@@ -5,16 +5,32 @@
 .dashboard-container{
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-around;
+    justify-content:space-between;
+    margin-top:25px;
     // align-items: stretch;
 }
 
 .dashboard-item{
     border: #DDD solid 1px;    
-    @include span(6 of 12); 
+    @include span(8 of 12); 
 }
+
+aside {
+  // flex-grow: 1;
+  // flex-basis: 33.3333%;
+  
+   @include span(4 of 12); 
+}
+
+section {
+  // flex-grow: 2;
+  // flex-basis: 66.6666%;
+   @include span(8 of 12); 
+}
+
 .horizontal-divider{
     margin:2em 0;
+    border-top: 1px solid #CCC;
 }
 
 

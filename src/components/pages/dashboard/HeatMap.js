@@ -9,8 +9,8 @@ const HeatMap=({data})=> {
     bottom: 20,
     left: 50
   },
-  width = 850,
-  height = 350;
+  width = 950,
+  height = 300;
 
   const hexData = d3.nest()
                 .key(function(d) {
@@ -40,7 +40,7 @@ const HeatMap=({data})=> {
   }
   const hexbinPath = hexbin().radius(hexRadius);
   return (
-      <svg width={width+margin.left+margin.right} height={height + margin.top + margin.bottom+100}>
+      <svg width={width+margin.left+margin.right} height={height + margin.top + margin.bottom}>
         <g transform={"translate(10," + margin.top + ")"}>
         {hexData.map((d,i)=><text key={i} x='0' y={i + hexRadius * i * 1.5}>{d.key}</text>)}
         </g>
@@ -55,8 +55,8 @@ const HeatMap=({data})=> {
           <linearGradient id="linearGradient" x1="0%" x2="100%" y1="0%" y2="0%">
           {colours.map((d,i)=><stop key={i} offset={i/(colours.length-1)} stopColor={d}/>)}
           </linearGradient>
-          <text x={margin.left+200} y={height-margin.bottom -50} style={{fontSize:14}}>Minutes worked in an hour</text>
-          <rect style={{fill:'url(#linearGradient)'}} x={margin.left+200} y={height- margin.bottom -40} width={(width-40)/2} height="10" />
+          <text x={margin.left+200} y={height-margin.bottom } style={{fontSize:14}}>Minutes worked in an hour</text>
+          <rect style={{fill:'url(#linearGradient)'}} x={margin.left+200} y={height- margin.bottom +10} width={(width-40)/2} height="10" />
         </g>
       </svg>
   );

@@ -28,51 +28,46 @@ import {
   Area
 } from 'recharts';
 
-let regeneratorRuntime =  require("regenerator-runtime");
+let regeneratorRuntime = require("regenerator-runtime");
 class Dashboard extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-      data:[]
+    this.state = {
+      data: []
     }
     this.getData();
-    // setInterval(()=>this.getData(),1000);
   }
-  async getData(){
+  async getData() {
     let {data} = await request('./data/currentData.json');
     this.setState({data});
   }
+
   render() {
     if (this.state.data.length === 0) {
-     
-      return <div>Hello</div>;
+      return <div>{"LOADING..."}</div>;
     }
+    const labelStyle = {color:'#0D47A1',textAlign:'center',paddingBottom:'15px'};
     return (
       <LayoutContainer headerText='Dashboard'>
         <div className="wrap page-content">
           <div className="dashboard-container">
-            <h2>24 hour workload on an average week.</h2>
-            <HeatMap data={this.state.data}/>
-          </div>
-          <div className="dashboard-container">
-            <div className="dashboard-item">
+            <section>
+              <h2 style={labelStyle}>Heatmap</h2>
+              <HeatMap data={this.state.data}/>
+            </section>
+            <aside>
               <TwoLevelPieChart/>
-            </div>
-
-            <div className="dashboard-item">
-              <LineBarAreaComposedChart/>
-            </div>
+            </aside>
           </div>
           <div className="horizontal-divider"/>
           <div className="dashboard-container">
-            <div className="dashboard-item">
-              <SimpleLineChart/>
-            </div>
-
-            <div className="dashboard-item">
-              <SimpleRadialBarChart/>
-            </div>
-          </div>
+            <aside>
+             <SimpleRadialBarChart/>              
+            </aside>
+            <section>
+               <SimpleLineChart/>
+            </section>           
+          </div>         
         </div>
       </LayoutContainer>
     )
@@ -121,8 +116,8 @@ const SimpleLineChart = React.createClass({
   render() {
     return (
       <LineChart
-        width={700}
-        height={400}
+        width={900}
+        height={300}
         data={data}
         margin={{
         top: 15,
@@ -138,78 +133,17 @@ const SimpleLineChart = React.createClass({
         <Line
           type="monotone"
           dataKey="pv"
-          stroke="#8884d8"
+          stroke="#B71C1C"
           activeDot={{
           r: 8
         }}/>
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d"/>
+        <Line type="monotone" dataKey="uv" stroke="#0D47A1"/>
       </LineChart>
     );
   }
 })
+
 const {PropTypes} = React;
-// const {ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
-// Legend} = Recharts;
-const dataLineBarAreaComposedChart = [
-  {
-    name: 'Page A',
-    uv: 590,
-    pv: 800,
-    amt: 1400
-  }, {
-    name: 'Page B',
-    uv: 868,
-    pv: 967,
-    amt: 1506
-  }, {
-    name: 'Page C',
-    uv: 1397,
-    pv: 1098,
-    amt: 989
-  }, {
-    name: 'Page D',
-    uv: 1480,
-    pv: 1200,
-    amt: 1228
-  }, {
-    name: 'Page E',
-    uv: 1520,
-    pv: 1108,
-    amt: 1100
-  }, {
-    name: 'Page F',
-    uv: 1400,
-    pv: 680,
-    amt: 1700
-  }
-];
-
-const LineBarAreaComposedChart = React.createClass({
-  render() {
-    return (
-      <ComposedChart
-        width={700}
-        height={400}
-        data={dataLineBarAreaComposedChart}
-        margin={{
-        top: 20,
-        right: 80,
-        bottom: 20,
-        left: 20
-      }}>
-        <XAxis dataKey="name" label="Pages"/>
-        <YAxis label="Index"/>
-        <Tooltip/>
-        <Legend/>
-        <CartesianGrid stroke='#f5f5f5'/>
-        <Area type='monotone' dataKey='amt' fill='#8884d8' stroke='#8884d8'/>
-        <Bar dataKey='pv' barSize={20} fill='#413ea0'/>
-        <Line type='monotone' dataKey='uv' stroke='#ff7300'/>
-      </ComposedChart>
-    );
-  }
-})
-
 // const {PieChart, Pie, Sector} = Recharts;
 const dataPieChart = [
   {
@@ -308,17 +242,17 @@ const TwoLevelPieChart = React.createClass({
   },
   render() {
     return (
-      <ResponsiveContainer>
+   <ResponsiveContainer>
         <PieChart onMouseEnter={this.onPieEnter}>
           <Pie
             activeIndex={this.state.activeIndex}
             activeShape={renderActiveShape}
             data={dataPieChart}
-            cx={300}
+            cx={230}
             cy={200}
             innerRadius={60}
             outerRadius={80}
-            fill="#8884d8"/>
+            fill="#B71C1C"/>
         </PieChart>
       </ResponsiveContainer>
     );
@@ -368,7 +302,7 @@ const dataRadial = [
 
 const style = {
   top: 100,
-  left: 550,
+  left: 300,
   lineHeight: '24px'
 };
 
@@ -376,9 +310,9 @@ const SimpleRadialBarChart = React.createClass({
   render() {
     return (
       <RadialBarChart
-        width={700}
-        height={400}
-        cx={350}
+        width={400}
+        height={300}
+        cx={150}
         cy={250}
         innerRadius={20}
         outerRadius={140}
