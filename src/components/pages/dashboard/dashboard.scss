@@ -16,3 +16,23 @@
 .horizontal-divider{
     margin:2em 0;
 }
+
+
+.hexPath path{
+  stroke:white;
+  stroke-width:1px;
+  transition: opacity .5s;
+}
+.hexPath text{
+  transition: opacity .5s;
+}
+.hexPath:hover path{
+  opacity: 0.1;
+}
+.hexPath text{
+  opacity: 0;
+  cursor:default;
+}
+.hexPath:hover text{
+  opacity: 1;
+}

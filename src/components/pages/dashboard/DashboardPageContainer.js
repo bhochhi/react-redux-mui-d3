@@ -1,4 +1,5 @@
 require('./dashboard.scss');
+
 import React from 'react';
 import {Card, CardActions, CardHeader, CardText, CardTitle} from 'material-ui/Card';
 import LayoutContainer from 'components/pages/dashboard/LayoutContainer';
@@ -27,32 +28,31 @@ import {
   Area
 } from 'recharts';
 
+let regeneratorRuntime =  require("regenerator-runtime");
 class Dashboard extends React.Component {
-  constructor(props) {
+  constructor(props){
     super(props);
-    this.state = {
-      data: []
+    this.state={
+      data:[]
     }
     this.getData();
-    setInterval(() => this.getData(), 1000);
+    // setInterval(()=>this.getData(),1000);
   }
-  async getData() {
-    let {data} = await request('./currentData.json');
+  async getData(){
+    let {data} = await request('./data/currentData.json');
     this.setState({data});
   }
-
   render() {
     if (this.state.data.length === 0) {
-      return null;
+     
+      return <div>Hello</div>;
     }
     return (
       <LayoutContainer headerText='Dashboard'>
         <div className="wrap page-content">
           <div className="dashboard-container">
-            <div className="dashboard-item">
             <h2>24 hour workload on an average week.</h2>
             <HeatMap data={this.state.data}/>
-            </div>
           </div>
           <div className="dashboard-container">
             <div className="dashboard-item">
