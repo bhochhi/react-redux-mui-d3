@@ -4,7 +4,8 @@ import React from 'react';
 import {Card, CardActions, CardHeader, CardText, CardTitle} from 'material-ui/Card';
 import LayoutContainer from 'components/pages/dashboard/LayoutContainer';
 import reactMixin from 'react-mixin';
-import HeatMap from './HeatMap';
+import HeatMap from './HeatMap.component';
+import HeatMapMatrix from './HeatMap.Matrix.component';
 import request from './request';
 import {
   LineChart,
@@ -51,9 +52,10 @@ class Dashboard extends React.Component {
       <LayoutContainer headerText='Dashboard'>
         <div className="wrap page-content">
           <div className="dashboard-container">
-            <section>
+            <section id="heatmap">
               <h2 style={labelStyle}>Heatmap</h2>
               <HeatMap data={this.state.data}/>
+              <HeatMapMatrix />
             </section>
             <aside>
               <TwoLevelPieChart/>

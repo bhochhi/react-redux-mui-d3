@@ -2,7 +2,7 @@ import React from 'react';
 import {hexbin} from 'd3-hexbin';
 import * as d3 from 'd3';
 
-const heatMap=({data})=> {
+const HeatMap=({data})=> {
   const margin = {
     top: 20,
     right: 20,
@@ -14,6 +14,7 @@ const heatMap=({data})=> {
 
   const hexData = d3.nest()
                 .key(function(d) {
+                  console.log('d',d);
                   return d.key;
                 })
                 .entries(data),
@@ -62,4 +63,4 @@ const heatMap=({data})=> {
   );
 }
 
-export default heatMap;
+export default HeatMap;
