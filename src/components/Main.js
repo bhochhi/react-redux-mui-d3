@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationBar from './NavigationBar';
+import NavBar from 'components/NavBar/navbar.container';
 
 
 class Main extends React.Component{
@@ -13,7 +13,7 @@ getChildContext() {
 render(){
       return  (
         <div>       
-          <NavigationBar location={this.props.location} />
+          <NavBar location={this.props.location} />
           {this.props.children}
         </div>
       );
